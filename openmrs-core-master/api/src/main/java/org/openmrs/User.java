@@ -153,6 +153,7 @@ public class User extends BaseOpenmrsObject implements java.io.Serializable, Att
 	}
 	
 	/** constructor with id */
+	/** Adding logs */
 	public User(Integer userId) {
 		this.userId = userId;
 		logger.info("User object created for userId: " + userId);
