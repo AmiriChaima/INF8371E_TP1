@@ -94,51 +94,51 @@ public class UserTest {
 	}
 
 
-	/** New Tests */
+	/** New Tests added to improve software quality */
 
-	 @Test
-public void addRole_shouldAddRoleSuccessfully() {
-    Role role = new Role("New Role");
-    user.addRole(role);
-    assertTrue(user.hasRole("New Role"));
-}
-
-@Test
-public void addRole_shouldNotAddDuplicateRole() {
-    Role role = new Role("Role");
-    user.addRole(role);
-    user.addRole(role); // Adding role again
-    assertEquals(1, user.getRoles().size());
-}
-
-
-@Test
-public void removeRole_shouldRemoveRoleSuccessfully() {
-    Role role = new Role("Role to Remove");
-    user.addRole(role);
-    user.removeRole(role);
-    assertFalse(user.hasRole("Role to Remove"));
-}
-
-
-/** hasPrivilege() **/ 
-
-@Test
-public void hasPrivilege_shouldHavePrivilege() {
-    assertTrue(user.hasPrivilege("some Privilege"));
-    
-}
-
-@Test
-public void hasPrivilege_shouldNotHavePrivilege() {
-    assertFalse(user.hasPrivilege("No Privilege"));
-}
-
-@Test
-public void hasPrivilege_shouldReturnFalseIfUserHasNoRoles() {
-    User userWithoutRoles = new User();
-    assertFalse(userWithoutRoles.hasPrivilege("Any Privilege"));
-}
-
+	@Test
+	public void addRole_shouldAddRoleSuccessfully() {
+		Role role = new Role("New Role");
+		user.addRole(role);
+		assertTrue(user.hasRole("New Role"));
+	}
+	
+	@Test
+	public void addRole_shouldNotAddDuplicateRole() {
+		Role role = new Role("Role");
+		user.addRole(role);
+		user.addRole(role); // Adding role again
+		assertEquals(1, user.getRoles().size());
+	}
+	
+	
+	@Test
+	public void removeRole_shouldRemoveRoleSuccessfully() {
+		Role role = new Role("Role to Remove");
+		user.addRole(role);
+		user.removeRole(role);
+		assertFalse(user.hasRole("Role to Remove"));
+	}
+	
+	
+	/** hasPrivilege() **/ 
+	
+	@Test
+	public void hasPrivilege_shouldHavePrivilege() {
+		assertTrue(user.hasPrivilege("some Privilege"));
+		
+	}
+	
+	@Test
+	public void hasPrivilege_shouldNotHavePrivilege() {
+		assertFalse(user.hasPrivilege("No Privilege"));
+	}
+	
+	@Test
+	public void hasPrivilege_shouldReturnFalseIfUserHasNoRoles() {
+		User userWithoutRoles = new User();
+		assertFalse(userWithoutRoles.hasPrivilege("Any Privilege"));
+	}
+	
 	
 }
