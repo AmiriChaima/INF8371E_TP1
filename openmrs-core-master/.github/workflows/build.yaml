@@ -42,6 +42,23 @@ jobs:
         run: mvn clean install -DskipTests=true -Dmaven.javadoc.skip=true --batch-mode --show-version --file pom.xml
       - name: Build with Maven
         run: mvn clean install --batch-mode && mvn test -Pskip-default-test -Pintegration-test --batch-mode --file pom.xml
+
+      # BEGIN: SonarQube Integration
+      - name: Cache SonarQube Cloud packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.sonar/cache
+          key: ${{ runner.os }}-sonar
+          restore-keys: ${{ runner.os }}-sonar
+
+      - name: Build and analyze with SonarQube
+        if: ${{ matrix.java-version == '17' }} # Run SonarQube analysis only for Java 17
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # For PR information
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}    # SonarQube authentication token
+        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=AmiriChaima_INF8371E_TP1
+        
+      # END: SonarQube Integration
       # this is necessary to populate the environment variables for Coveralls properly
       - name: Set branch name and PR number
         id: refs
