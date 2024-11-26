@@ -249,6 +249,8 @@
                           <location>${project.build.directory}/${project.build.finalName}.war</location>
                           <properties>
                               <context>/${webapp.name}</context>
+							  <sonar.organization>amirichaima</sonar.organization>
+  							  <sonar.host.url>https://sonarcloud.io</sonar.host.url>
                           </properties>
                       </deployable>
                   </deployables>
